@@ -2,6 +2,7 @@
 from git import Repo
 import logging
 import os
+import shutil
 import yaml
 
 logger = logging.getLogger(__name__)
@@ -25,10 +26,21 @@ if __name__ == "__main__":
             repo_list = []
             logger.error(exc_info=True)
 
-    def clone_progress(op_code, cur_count, max_count=None, message=''):
+    def default_progress(op_code, cur_count, max_count=None, message=''):
         logger.info(f"Progress: {op_code}, {cur_count}/{max_count}: {message}")
 
     storage_root = sys_settings["storage_root"]
+    storage_min_free_space_gb = sys_settings["storage_min_free_space_gb"]
+
+    # Do we have enough space?
+    total_b, used_b, free_b = shutil.disk_usage(storage_root)
+    storage_desc = f"Have {free_b / (1024**3):.3f} GB free out of required {storage_min_free_space_gb:.3f} GB"
+    if free_b >= (1024**3) * storage_min_free_space_gb:
+        logger.info(f"{storage_desc}; will update.")
+    else:
+        logger.error(f"{storage_desc}; will not update.")
+        exit(2)
+
     for repo in repo_list:
         url = repo["url"]
         protocol,path=url.split("://")
@@ -39,9 +51,9 @@ if __name__ == "__main__":
             logger.info(f"Will fetch {repo} into {local_repo_path}")
             repo = Repo(local_repo_path)
             logger.info(f"Repo {'is' if repo.bare else 'is not'} bare.")
-            repo.remote("origin").fetch(refspec='+refs/heads/*:refs/heads/*', progress=clone_progress)
+            repo.remote("origin").fetch(refspec='+refs/heads/*:refs/heads/*', progress=default_progress)
         else:
             logger.info(f"Will clone {repo} into {local_repo_path}")
             os.makedirs(local_repo_path, exist_ok=True)
-            repo = Repo.clone_from(url, local_repo_path, clone_progress, multi_options=["--bare"])
+            repo = Repo.clone_from(url, local_repo_path, default_progress, multi_options=["--bare"])
     
