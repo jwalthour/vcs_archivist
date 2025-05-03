@@ -41,19 +41,22 @@ if __name__ == "__main__":
         logger.error(f"{storage_desc}; will not update.")
         exit(2)
 
-    for repo in repo_list:
-        url = repo["url"]
-        protocol,path=url.split("://")
-        path_elements = path.split("/")
-        path_elements_sanitized = [el for el in path_elements if el != ".."]
-        local_repo_path = os.path.join(storage_root, *path_elements_sanitized)
-        if os.path.isdir(local_repo_path):
-            logger.info(f"Will fetch {repo} into {local_repo_path}")
-            repo = Repo(local_repo_path)
-            logger.info(f"Repo {'is' if repo.bare else 'is not'} bare.")
-            repo.remote("origin").fetch(refspec='+refs/heads/*:refs/heads/*', progress=default_progress)
-        else:
-            logger.info(f"Will clone {repo} into {local_repo_path}")
-            os.makedirs(local_repo_path, exist_ok=True)
-            repo = Repo.clone_from(url, local_repo_path, default_progress, multi_options=["--bare"])
+    for category_name,repos in repo_list.items():
+        logger.info(f"Updating category: {category_name}")
+        for repo in repos:
+            url = repo["url"]
+            protocol,path=url.split("://")
+            path_elements = path.split("/")
+            path_elements_sanitized = [el for el in path_elements if el != ".."]
+            local_repo_path = os.path.join(storage_root, *path_elements_sanitized)
+            if os.path.isdir(local_repo_path):
+                logger.info(f"Will fetch {repo} into {local_repo_path}")
+                repo = Repo(local_repo_path)
+                logger.info(f"Repo {'is' if repo.bare else 'is not'} bare.")
+                repo.remote("origin").fetch(refspec='+refs/heads/*:refs/heads/*')
+            else:
+                logger.info(f"Will clone {repo} into {local_repo_path}")
+                os.makedirs(local_repo_path, exist_ok=True)
+                repo = Repo.clone_from(url, local_repo_path, multi_options=["--bare"])
+    logger.info("Done.")
     

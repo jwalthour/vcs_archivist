@@ -1,4 +1,5 @@
 ---
-- url: "https://github.com/jwalthour/msld.git"
-- url: "https://github.com/jwalthour/mlb-led-scoreboard.git"
-- url: "https://github.com/jwalthour/vcs_archivist.git"
+"John's personal projects":
+  - url: "https://github.com/jwalthour/msld.git"
+  - url: "https://github.com/jwalthour/mlb-led-scoreboard.git"
+  - url: "https://github.com/jwalthour/vcs_archivist.git"
