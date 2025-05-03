@@ -1,0 +1,25 @@
+---
+"John's personal projects":
+  - url: "https://github.com/jwalthour/msld.git"
+  - url: "https://github.com/jwalthour/mlb-led-scoreboard.git"
+  - url: "https://github.com/jwalthour/vcs_archivist.git"
+"Security tools and libraries":
+  - url: "https://dev.gnupg.org/source/gnupg.git"
+  - url: "https://github.com/signalapp/Signal-Server.git"
+  - url: "https://github.com/signalapp/libsignal.git"
+  - url: "https://github.com/signalapp/Signal-Desktop.git"
+  - url: "https://github.com/signalapp/Signal-Android.git"
+  - url: "https://github.com/jedisct1/libsodium.git"
+  - url: "https://github.com/jedisct1/minisign.git"
+  - url: "https://github.com/FiloSottile/age.git"
+  - url: "https://github.com/openssl/openssl.git"
+  - url: "https://github.com/magic-wormhole/magic-wormhole.git"
+"Language tools":
+  - url: "git://gcc.gnu.org/git/gcc.git"
+  - url: "https://github.com/python/cpython.git"
+  - url: "https://github.com/rust-lang/rust.git"
+  - url: "https://github.com/golang/go.git"
+  - url: "https://github.com/JetBrains/kotlin.git"
+"Development tools":
+  - url: "https://github.com/git/git.git"
+  - url: "https://github.com/torvalds/linux.git"
