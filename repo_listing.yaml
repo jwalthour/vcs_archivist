@@ -23,3 +23,22 @@
 "Development tools":
   - url: "https://github.com/git/git.git"
   - url: "https://github.com/torvalds/linux.git"
+  - url: "https://github.com/opencv/opencv.git"
+  - url: "https://github.com/docker/for-linux.git"
+  - url: "https://github.com/docker/cli.git"
+  - url: "https://github.com/docker/buildx.git"
+"CAD and mechanical engineering":
+  - url: "https://github.com/MarlinFirmware/Marlin.git"
+  - url: "https://github.com/openscad/openscad.git"
+  - url: "https://github.com/FreeCAD/FreeCAD.git"
+  - url: "https://github.com/LibreCAD/LibreCAD.git"
+"Web":
+  - url: "https://github.com/mastodon/mastodon.git"
+  - url: "https://github.com/wikimedia/mediawiki.git"
+  - url: "https://github.com/kiwix/kiwix-desktop.git"
+  - url: "https://github.com/apache/httpd.git"
+  - url: "https://github.com/nginx/nginx.git"
+  - url: "https://git.ffmpeg.org/ffmpeg.git"
+  - url: "https://github.com/mozilla/gecko-dev.git"
+"Multimedia":
+  - url: "https://code.videolan.org/videolan/vlc.git"
