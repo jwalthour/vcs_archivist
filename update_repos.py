@@ -35,7 +35,13 @@ if __name__ == "__main__":
         path_elements = path.split("/")
         path_elements_sanitized = [el for el in path_elements if el != ".."]
         local_repo_path = os.path.join(storage_root, *path_elements_sanitized)
-        logger.info(f"Will clone {repo} into {local_repo_path}")
-        os.makedirs(local_repo_path, exist_ok=True)
-        repo = Repo.clone_from(url, local_repo_path, clone_progress, multi_options=["--bare"])
+        if os.path.isdir(local_repo_path):
+            logger.info(f"Will fetch {repo} into {local_repo_path}")
+            repo = Repo(local_repo_path)
+            logger.info(f"Repo {'is' if repo.bare else 'is not'} bare.")
+            repo.remote("origin").fetch(refspec='+refs/heads/*:refs/heads/*', progress=clone_progress)
+        else:
+            logger.info(f"Will clone {repo} into {local_repo_path}")
+            os.makedirs(local_repo_path, exist_ok=True)
+            repo = Repo.clone_from(url, local_repo_path, clone_progress, multi_options=["--bare"])
     
