@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import logging.handlers
-from git import Repo
+from git import Repo, RemoteProgress
 import logging
 import os
 import shutil
@@ -42,8 +42,16 @@ if __name__ == "__main__":
             repo_list = []
             logger.error(exc_info=True)
 
+    # TODO: this has state enough that it needs to be a class
     def default_progress(op_code, cur_count, max_count=None, message=""):
-        logger.info(f"Progress: {op_code}, {cur_count}/{max_count}: {message}")
+        if op_code & RemoteProgress.OP_MASK == RemoteProgress.RECEIVING:
+            global last_update_frac
+            UPDATE_EVERY_FRAC = 0.1
+            if max_count:
+                frac = cur_count / max_count
+                if frac >= last_update_frac + UPDATE_EVERY_FRAC:
+                    logger.info(f"Receiving, {frac * 100 :3.0f}%: {message}")
+                    last_update_frac = frac                
 
     storage_root = sys_settings["storage_root"]
     storage_min_free_space_gb = sys_settings["storage_min_free_space_gb"]
@@ -67,11 +75,22 @@ if __name__ == "__main__":
             local_repo_path = os.path.join(storage_root, *path_elements_sanitized)
             if os.path.isdir(local_repo_path):
                 logger.info(f"Will fetch {repo} into {local_repo_path}")
-                repo = Repo(local_repo_path)
-                logger.info(f"Repo {'is' if repo.bare else 'is not'} bare.")
-                repo.remote("origin").fetch(refspec="+refs/heads/*:refs/heads/*")
+                try:
+                    repo = Repo(local_repo_path)
+                    logger.info(f"Repo {'is' if repo.bare else 'is not'} bare.")
+                    last_update_frac = -1
+                    repo.remote("origin").fetch(refspec="+refs/heads/*:refs/heads/*", progress=default_progress)
+                except KeyboardInterrupt:
+                    raise
+                except:
+                    logger.error("Failed to fetch:", exc_info=True)
             else:
                 logger.info(f"Will clone {repo} into {local_repo_path}")
                 os.makedirs(local_repo_path, exist_ok=True)
-                repo = Repo.clone_from(url, local_repo_path, multi_options=["--bare"])
+                try:
+                    repo = Repo.clone_from(url, local_repo_path, multi_options=["--bare"], progress=default_progress)
+                except KeyboardInterrupt:
+                    raise
+                except:
+                    logger.error("Failed to clone:", exc_info=True)
     logger.info("Done.")
