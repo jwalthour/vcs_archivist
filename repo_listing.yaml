@@ -20,6 +20,8 @@
   - url: "https://github.com/rust-lang/rust.git"
   - url: "https://github.com/golang/go.git"
   - url: "https://github.com/JetBrains/kotlin.git"
+  - url: "https://github.com/microsoft/TypeScript.git"
+  - url: "https://github.com/nodejs/node.git"
 "Development tools":
   - url: "https://github.com/git/git.git"
   - url: "https://github.com/torvalds/linux.git"
@@ -27,6 +29,7 @@
   - url: "https://github.com/docker/for-linux.git"
   - url: "https://github.com/docker/cli.git"
   - url: "https://github.com/docker/buildx.git"
+  - url: "https://github.com/microsoft/vscode.git"
 "CAD and mechanical engineering":
   - url: "https://github.com/MarlinFirmware/Marlin.git"
   - url: "https://github.com/openscad/openscad.git"
@@ -42,3 +45,8 @@
   - url: "https://github.com/mozilla/gecko-dev.git"
 "Multimedia":
   - url: "https://code.videolan.org/videolan/vlc.git"
+"Cryptocurrency":
+  - url: "https://github.com/bitcoin/bitcoin.git"
+  - url: "https://github.com/ethereum/go-ethereum.git"
+  - url: "https://github.com/ethereum/solidity.git"
+  - url: "https://github.com/ethereum/remix-project.git"
