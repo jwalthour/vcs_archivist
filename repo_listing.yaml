@@ -14,7 +14,7 @@
   - url: "https://github.com/FiloSottile/age.git"
   - url: "https://github.com/openssl/openssl.git"
   - url: "https://github.com/magic-wormhole/magic-wormhole.git"
-"Language tools":
+"Languages":
   - url: "git://gcc.gnu.org/git/gcc.git"
   - url: "https://github.com/python/cpython.git"
   - url: "https://github.com/rust-lang/rust.git"
@@ -22,14 +22,27 @@
   - url: "https://github.com/JetBrains/kotlin.git"
   - url: "https://github.com/microsoft/TypeScript.git"
   - url: "https://github.com/nodejs/node.git"
+  - url: "https://github.com/openjdk/jdk.git"
 "Development tools":
   - url: "https://github.com/git/git.git"
   - url: "https://github.com/torvalds/linux.git"
   - url: "https://github.com/opencv/opencv.git"
+  - url: "https://github.com/microsoft/vscode.git"
+"Docker and containers":
   - url: "https://github.com/docker/for-linux.git"
   - url: "https://github.com/docker/cli.git"
   - url: "https://github.com/docker/buildx.git"
-  - url: "https://github.com/microsoft/vscode.git"
+  - url: "https://github.com/distribution/distribution.git"
+  - url: "https://github.com/opencontainers/distribution-spec.git"
+  - url: "https://github.com/opencontainers/runc.git"
+  - url: "https://github.com/opencontainers/image-spec.git"
+  - url: "https://github.com/opencontainers/runtime-spec.git"
+  - url: "https://github.com/opencontainers/go-digest.git"
+"Genomic data science":
+  - url: "https://github.com/igvteam/igv"
+  - url: "https://github.com/samtools/htslib.git"
+  - url: "https://github.com/samtools/htscodecs.git"
+  - url: "https://github.com/samtools/hts-specs.git"
 "CAD and mechanical engineering":
   - url: "https://github.com/MarlinFirmware/Marlin.git"
   - url: "https://github.com/openscad/openscad.git"
