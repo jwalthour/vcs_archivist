@@ -50,7 +50,7 @@ if __name__ == "__main__":
             if max_count:
                 frac = cur_count / max_count
                 if frac >= last_update_frac + UPDATE_EVERY_FRAC:
-                    logger.info(f"Receiving, {frac * 100 :3.0f}%: {message}")
+                    logger.debug(f"Receiving, {frac * 100 :3.0f}%: {message}")
                     last_update_frac = frac                
 
     storage_root = sys_settings["storage_root"]
@@ -77,7 +77,7 @@ if __name__ == "__main__":
                 logger.info(f"Will fetch {repo} into {local_repo_path}")
                 try:
                     repo = Repo(local_repo_path)
-                    logger.info(f"Repo {'is' if repo.bare else 'is not'} bare.")
+                    logger.debug(f"Repo {'is' if repo.bare else 'is not'} bare.")
                     last_update_frac = -1
                     repo.remote("origin").fetch(refspec="+refs/heads/*:refs/heads/*", progress=default_progress)
                 except KeyboardInterrupt:
