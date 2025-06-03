@@ -73,3 +73,5 @@
   - url: "https://github.com/ethereum/go-ethereum.git"
   - url: "https://github.com/ethereum/solidity.git"
   - url: "https://github.com/ethereum/remix-project.git"
+"Robotics":
+  - url: "https://github.com/microsoft/AirSim.git"
