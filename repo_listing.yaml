@@ -68,6 +68,7 @@
   - url: "https://github.com/jellyfin/jellyfin-media-player.git"
   - url: "https://github.com/jellyfin/jellycon.git"
   - url: "https://github.com/jellyfin/jellyfin-android.git"
+  - url: "https://github.com/yt-dlp/yt-dlp.git"
 "Cryptocurrency":
   - url: "https://github.com/bitcoin/bitcoin.git"
   - url: "https://github.com/ethereum/go-ethereum.git"
