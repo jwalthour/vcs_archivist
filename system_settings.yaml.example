@@ -1,3 +1,4 @@
 ---
 storage_root: "/store/my/repos/here"
 storage_min_free_space_gb: 4
+log_dir: "/store/logs/here"
