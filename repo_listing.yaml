@@ -42,6 +42,7 @@
   - url: "https://github.com/microsoft/TypeScript.git"
   - url: "https://github.com/nodejs/node.git"
   - url: "https://github.com/openjdk/jdk.git"
+  - url: "https://gitlab.winehq.org/mono/mono.git"
 "Development tools":
   - url: "https://github.com/git/git.git"
   - url: "https://github.com/torvalds/linux.git"
@@ -107,3 +108,9 @@
   - url: "https://github.com/Tympan/Tympan_Rev_F_Hardware.git"
 "Embedded":
   - url: "https://github.com/littlefs-project/littlefs.git"
+"Gaming":
+  - url: "https://github.com/inkle/ink.git"
+  - url: "https://github.com/inkle/ink-unity-integration.git"
+  - url: "https://github.com/inkle/inky.git"
+  - url: "https://github.com/inkle/slayout.git"
+  - url: "https://github.com/inkle/the-intercept.git"
