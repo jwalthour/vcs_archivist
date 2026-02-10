@@ -108,6 +108,8 @@
   - url: "https://github.com/Tympan/Tympan_Rev_F_Hardware.git"
 "Embedded":
   - url: "https://github.com/littlefs-project/littlefs.git"
+  - url: "https://github.com/TheCommsChannel/TC2-BBS-mesh"
+  - url: "https://github.com/EFForg/rayhunter"
 "Gaming":
   - url: "https://github.com/inkle/ink.git"
   - url: "https://github.com/inkle/ink-unity-integration.git"
