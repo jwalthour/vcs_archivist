@@ -1,4 +1,8 @@
 ---
+"Radio":
+  - url: "https://github.com/TheCommsChannel/TC2-BBS-mesh"
+  - url: "https://github.com/EFForg/rayhunter"
+  - url: "https://github.com/armel/uv-k5-firmware-custom"
 "John's personal projects":
   - url: "https://github.com/jwalthour/msld.git"
   - url: "https://github.com/jwalthour/mlb-led-scoreboard.git"
@@ -108,8 +112,6 @@
   - url: "https://github.com/Tympan/Tympan_Rev_F_Hardware.git"
 "Embedded":
   - url: "https://github.com/littlefs-project/littlefs.git"
-  - url: "https://github.com/TheCommsChannel/TC2-BBS-mesh"
-  - url: "https://github.com/EFForg/rayhunter"
 "Gaming":
   - url: "https://github.com/inkle/ink.git"
   - url: "https://github.com/inkle/ink-unity-integration.git"
