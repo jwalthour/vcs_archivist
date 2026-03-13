@@ -89,7 +89,6 @@ if __name__ == "__main__":
                     except GitCommandError as e:
                         conflicting_refs = set()
                         for match in REF_LOCK_PATTERN.finditer(str(e)):
-                            conflicting_refs.add(match.group(1))
                             conflicting_refs.add(match.group(2))
                         if not conflicting_refs:
                             raise
