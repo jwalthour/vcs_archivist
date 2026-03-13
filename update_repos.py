@@ -1,6 +1,8 @@
 #!/usr/bin/python
 import logging.handlers
+import re
 from git import Repo, RemoteProgress
+from git.exc import GitCommandError
 import logging
 import os
 import shutil
@@ -15,6 +17,9 @@ LOG_TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 LOG_FILENAME = "repo_update.log"
 SINGLE_LOG_MAX_SIZE_B = 10 * 1024 * 1024
 TOTAL_LOG_COUNT = 10
+REF_LOCK_PATTERN = re.compile(
+    r"error: cannot lock ref '([^']+)': '([^']+)' exists; cannot create"
+)
 
 if __name__ == "__main__":
     with open(SYS_SETTINGS_FN) as stream:
@@ -76,10 +81,22 @@ if __name__ == "__main__":
             if os.path.isdir(local_repo_path):
                 logger.info(f"Will fetch {repo} into {local_repo_path}")
                 try:
-                    repo = Repo(local_repo_path)
-                    logger.debug(f"Repo {'is' if repo.bare else 'is not'} bare.")
+                    repo_obj = Repo(local_repo_path)
+                    logger.debug(f"Repo {'is' if repo_obj.bare else 'is not'} bare.")
                     last_update_frac = -1
-                    repo.remote("origin").fetch(refspec="+refs/heads/*:refs/heads/*", progress=default_progress)
+                    try:
+                        repo_obj.remote("origin").fetch(refspec="+refs/heads/*:refs/heads/*", progress=default_progress)
+                    except GitCommandError as e:
+                        conflicting_refs = set()
+                        for match in REF_LOCK_PATTERN.finditer(str(e)):
+                            conflicting_refs.add(match.group(2))
+                        if not conflicting_refs:
+                            raise
+                        for ref in conflicting_refs:
+                            logger.info(f"Removing conflicting ref: {ref}")
+                            repo_obj.git.update_ref("-d", ref)
+                        last_update_frac = -1
+                        repo_obj.remote("origin").fetch(refspec="+refs/heads/*:refs/heads/*", progress=default_progress)
                 except KeyboardInterrupt:
                     raise
                 except:
