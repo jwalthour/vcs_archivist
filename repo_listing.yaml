@@ -15,6 +15,7 @@
   - url: "https://github.com/FiloSottile/age.git"
   - url: "https://github.com/openssl/openssl.git"
   - url: "https://github.com/magic-wormhole/magic-wormhole.git"
+  - url: "https://github.com/SparrowMap/sparrowmap"
 "Languages":
   - url: "git://gcc.gnu.org/git/gcc.git"
   - url: "https://github.com/python/cpython.git"
